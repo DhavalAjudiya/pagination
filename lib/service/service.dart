@@ -4,11 +4,11 @@ import 'package:pagination/modal/paginationmodal.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static Future<Pagination?> fatchPostData() async {
+  static Future<Pagination?> fatchPostData(int select) async {
     final url = "https://yeay-dev.xc.io/search";
     Map<String, dynamic> body = {
       "searchText": "wom",
-      "pageIndex": 0,
+      "pageIndex": select,
       "limit": 20,
       "returnQueryCount": true
     };

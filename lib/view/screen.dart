@@ -13,16 +13,16 @@ class Screen extends StatelessWidget {
             Expanded(
               child: Obx(
                 () => ListView.builder(
-                  itemCount: controller.paginaton.value.items?.length ?? 0,
+                  controller: controller.scrollController,
+                  itemCount: controller.data.value.length,
                   itemBuilder: (context, index) {
                     ///20 data ///EVENT
                     ///pageIndex++  ==   listlength ˜/ 20; ??INDEX
                     ///API call
-
                     // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
                     //   ///AFTER WIDGET BUILD
                     // });
-                    final data = controller.paginaton.value.items![index];
+                    final data = controller.data.value[index];
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
