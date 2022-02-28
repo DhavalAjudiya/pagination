@@ -8,9 +8,8 @@ class Controller extends GetxController {
   Rx<Pagination> paginaton = Pagination().obs;
   ScrollController scrollController = ScrollController();
   RxList data = [].obs;
-  RxBool loding = true.obs;
-  int pageLimit = 25;
   int select = 0;
+  RxBool isPagination = false.obs;
 
   @override
   void onInit() {
@@ -19,6 +18,7 @@ class Controller extends GetxController {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {
         print("pixel ==>>${scrollController.position.pixels}");
+        isPagination.value = true;
         nextData();
       }
     });
@@ -27,36 +27,31 @@ class Controller extends GetxController {
 
   void fatchData(int select) async {
     try {
-      loding(true);
       final result = await ApiService.fatchPostData(0);
       paginaton.value = result!;
       if (paginaton.value.items!.isNotEmpty) {
         data.addAll(paginaton.value.items!);
         print("data==>>>>${data.length}");
-        select++;
       }
     } catch (e, st) {
-      loding(false);
       log('fatchData:---->> 000->>$e && st is:-->>$st');
     }
   }
 
-  nextData() async {
+  void nextData() async {
     try {
-      loding.value = true;
-      if (paginaton.value.items!.length > pageLimit) {
-        loding(false);
-      } else {
-        select++;
-      }
+      select++;
+      print("select---------->>>${select}");
       final result = await ApiService.fatchPostData(select);
       paginaton.value = result!;
-      if (paginaton.value.items!.isNotEmpty) {
+      if (paginaton.value.items != null) {
         data.addAll(paginaton.value.items!);
+        print("adddata====///>>>>${data.length}");
       }
-    } catch (e) {
-      loding(false);
-      print(e);
+    } catch (e, st) {
+      print("nextdata ======---->>>>>>${e}////${st}");
+    } finally {
+      //
     }
   }
 }

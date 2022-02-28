@@ -13,51 +13,7 @@ class PagiNation extends StatefulWidget {
 }
 
 class _PagiNationState extends State<PagiNation> {
-  // int currentpage = 1;
   List<String> data = [];
-  // int? totalpage;
-  // bool isLoad = false;
-  // //
-  // final RefreshController refreshController =
-  //     RefreshController(initialRefresh: true);
-  //
-  // List<Passenger> passengers = [];
-
-  // Future<bool> getPassenger({bool isRefresh = false}) async {
-  //   if (isRefresh) {
-  //     currentpage = 1;
-  //   } else {
-  //     if (currentpage >= totalpage!) {
-  //       refreshController.loadNoData();
-  //       return false;
-  //     }
-  //   }
-  //
-  //   try {
-  //     isLoad = true;
-  //
-  //     print("data====>>>>${response.body}");
-  //     if (response.statusCode == 200) {
-  //       final result = passengerDataFromJson(response.body);
-  //       if (isRefresh) {
-  //         passengers = result.data;
-  //       } else {
-  //         passengers.addAll(result.data);
-  //       }
-  //
-  //       currentpage++;
-  //
-  //       totalpage = result.totalPages;
-  //       print("====>>>${response.body}");
-  //       setState(() {});
-  //     } else {}
-  //   } catch (e, st) {
-  //     print("$e $st");
-  //   } finally {
-  //     isLoad = false;
-  //     return false;
-  //   }
-  // }
 
   ScrollController _controller = ScrollController();
   getPsssenger() async {
